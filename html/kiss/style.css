@@ -1,0 +1,274 @@
+body{
+    background-color: #22f006;
+    margin: 0;
+}
+.container{
+    width: 232px;
+    height: 200px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform:translate(-50%,-50%);
+}
+.ball{
+    width: 100px;
+    height: 100px;
+    border: 8px solid #000;
+    border-radius: 50%;
+    background-color: #ffffff;
+    position: absolute;
+}
+#l-ball{
+    left: 0;
+}
+#r-ball{
+    right:0;
+}
+.lface{
+    width: 70px;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 30px;
+}
+.rface{
+    width: 70px;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    top: 30px;
+}
+.leye{
+    width: 15px;
+    height: 14px;
+    border-bottom: 5px solid #000;
+    border-radius: 50%;
+    position: absolute;
+}
+.reye{
+    width: 15px;
+    height: 14px;
+    border-top: 5px solid #000;
+    border-radius: 50%;
+    position: absolute;
+}
+.leye-l{
+    left: 10px;
+}
+.leye-r{
+    right: 5px;
+}
+.reye-l{
+    left: 10px;
+}
+.reye-r{
+    right: 5px;
+}
+.mouth{
+    width: 30px;
+    height: 14px;
+    border-bottom: 5px solid #000;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    bottom: -5px;
+}
+.kiss{
+    width: 20px;
+    height: 14px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    bottom: -5px;
+}
+.kissmouth{
+    width: 8px;
+    height: 8px;
+    border-left: 5px solid #000;
+    border-radius: 50%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.lface::before{
+    content: '';
+    width: 18px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ed0303;
+    position: absolute;
+    right: -8px;
+    top: 20px;
+}
+.lface::after{
+    content: '';
+    width: 18px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ed0303;
+    position: absolute;
+    left: -5px;
+    top: 20px;
+}
+.rface::before{
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ed0303;
+    position: absolute;
+    right: -8px;
+    top: 20px;
+}
+.rface::after{
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ed0303;
+    position: absolute;
+    left: -5px;
+    top: 20px;
+}
+#l-ball{
+    animation: lclose 4s ease infinite;
+}
+
+@keyframes lclose {
+    0%{
+        transform: translate(0);
+    }
+    20%{
+        transform: translate(20px);
+    }
+    35%{
+        transform: translate(20px);
+    }
+    50%{
+        transform: translate(0);
+    }
+    100%{
+        transform: translate(0);
+    }
+}
+.lface{
+    animation: girlface 4s ease infinite;
+}
+
+@keyframes girlface {
+    0%{
+        transform: translate(0) rotate(0);
+    }
+    10%{
+        transform: translate(0) rotate(0);
+    }
+    20%{
+        transform: translate(5px) rotate(-2deg);
+    }
+    28%{
+        transform: translate(0) rotate(0);
+    }
+    35%{
+        transform: translate(5px) rotate(-2deg);
+    }
+    50%{
+        transform: translate(0) rotate(0);
+    }
+    100%{
+        transform: translate(0) rotate(0);
+    }
+}
+#r-ball{
+    animation:rclose 4s ease infinite;
+}
+@keyframes rclose {
+    0%{
+        transform: translate(0);
+    }
+    20%{
+        transform: translate(0);
+    }
+    50%{
+        transform: translate(0);
+    }
+    75%{
+        transform: translate(-20px);
+    }
+    100%{
+        transform: translate(0);
+    }
+}
+.rface{
+    animation: boyface 4s ease infinite;
+}
+@keyframes boyface {
+    0%{
+        transform: translate(0) rotate(0);
+    }
+    50%{
+        transform: translate(0) rotate(0);
+    }
+    60%{
+        transform: translate(0) rotate(0);
+    }
+    70%{
+        transform: translate(-5px) rotate(2deg);
+    }
+    78%{
+        transform: translate(0) rotate(0);
+    }
+    100%{
+        transform: translate(0) rotate(0);
+    }
+}
+.bigmouth{
+    animation: hide 4s ease infinite;
+}
+@keyframes hide {
+    0%{
+        opacity: 1;
+    }
+    60%{
+        opacity: 1;
+    }
+    65%{
+        opacity: 0;
+    }
+    70%{
+        opacity: 0;
+    }
+    78%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.kiss{
+    animation: boymouth 4s ease infinite;
+}
+@keyframes boymouth {
+    0%{
+        transform: translate(0) rotate(0);
+        opacity: 0;
+    }
+    60%{
+        transform: translate(0) rotate(0);
+        opacity: 0;
+    }
+    70%{
+        transform: translate(-5px) rotate(2deg);
+        opacity: 1;
+    }
+    78%{
+        transform: translate(0) rotate(0);
+        opacity: 0;
+    }
+    100%{
+        transform: translate(0) rotate(0);
+        opacity: 0;
+    }
+}

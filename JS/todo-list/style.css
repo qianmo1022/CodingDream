@@ -1,0 +1,28 @@
+ul li {
+    list-style: none;
+    font-size: large;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;/*去除默认焦点样式*/
+    font-size: large;
+}
+input:focus{
+    border: none;
+    border-bottom: 1px solid #000;
+}
+
+input[type=checkbox]:checked + span{
+    /*   color: red; */
+      text-decoration: line-through;
+      color: grey;
+}
