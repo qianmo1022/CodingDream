@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // JS有强大的表现力 语言精粹 对象
+        // 对象字面量
+        //数据类型  简单数据类型 复杂（引用）
+        const xqm = {
+            name: '肖启明',//key value
+            age: 20,
+            hometown: '吉安',
+            isSingle: false,
+
+        }
+        // 对象的本质 = 属性 + 方法 
+        const kjh = {
+            name: '况君豪',//key value
+            age: 18,
+            hometown: '南昌',
+            isSingle: true,
+            //形参
+            sendFlower (receiver) {
+                // console.log(this);//对象方法内部this 指向本尊（并不全对）
+                receiver.receiveFlower(this)
+            }
+
+        }
+        // 现实情况很复杂，你的面向对象要能搞得定   设计模式
+        // 送花  情商 码商
+        const xm = {
+            name: '小美',
+            emotion: 50,
+            receiveFlower (sender) {//es6中可以删去“: function”
+                //es5版本，命令式代码 low
+                // console.log(this.name + '收到' + sender.name + '花');
+                //字符串模板(先编译)，es6代码 表达式代码 更加优雅准确
+                console.log(`${this.name}收到${sender.name}的花`);//`${}`会占用字符从而实现先编译
+                if (this.emotion < 80) {
+                    console.log('本宫没心情，打出去');
+                
+                } else {
+                    console.log('万达走一波');
+                }
+            }
+
+        }
+        // 代理模式
+        const xh = {
+            name: '小红',
+            hometown: '南昌',
+
+            //method 接口 Interface
+            receiveFlower (sender) {
+                // console.log('收到'+sender.name+'花');
+                // if (sender.name === '况君豪') {
+                //     console.log('让我们在一起吧');
+                // }
+                if (xm.emotion>=80) {
+                    xm.receiveFlower(sender)
+                } else {
+                    setTimeout(function () {
+                        xm.emotion = 99
+                        xm.receiveFlower(sender)
+                    }, 2000)//计时器，单位是千分之一秒
+                } 
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>
