@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="book p3d" >
+
+        <div class="front-cover p3d">
+            <div class="inside page p3d flip">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Quam deleniti dolorem earum nostrum nihil, in eligendi odit totam quasi vel 
+                    distinctio nulla similique inventore aspernatur voluptatibus. 
+                    Omnis iusto ut sunt!
+                </p>
+            </div>
+             <div class="outside page"><!--添加page使得inside和outside具有公共类page其共同特征可以设置page来使它们都具有 -->
+
+            </div>
+        </div>
+        <div class="back-cover p3d">
+            <div class="outside page">
+                <div class="inside page p3d">
+                    <div class="shadow"></div>
+                    <div class="card"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./index.js"></script>
+</body>
+</html>

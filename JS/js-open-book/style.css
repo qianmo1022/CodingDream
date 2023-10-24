@@ -1,0 +1,89 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    box-sizing: border-box;/*将容器声明成IE模型，IE模型的浏览器如果声明成100*100的容器内边距为10，其占用位置仍为100*100，但是其他模型的浏览器占用位置则为120*120*/
+}
+html{
+    height: 100%;
+}
+body{
+    height: 100%;/*vh是可视窗口的高度*/
+    font:100%/1.25 Helvetica,arial,sans-serif;
+    perspective: 1000px;/*perspective定义了观察者距离z=0平面的距离*/
+    background-color: #444;
+    background-image: linear-gradient(to bottom,#444,#999);/*linear-gradient兼容性不太好，老版本浏览器可能识别不了渐变色*/
+}
+.p3d{
+    transform-style: preserve-3d;
+}
+.book{
+    widows: 300px;
+    height: 300px;
+    position: absolute;/*相对定位，相对于父容器追根溯源*/
+    left: 50%;
+    top: 50%;
+    /* transform: translateY(-50%);/*Y轴平移相对于自身的50% */
+    margin-top: -150px;
+    color: #fff;
+    transform: rotateX(60deg);/*绕X轴旋转*//*当用户谷歌浏览器版本太老时，属性改为-webkit-transform才可识别，火狐改为-moz-transform*/
+    user-select: none;
+}
+.front-cover{
+    cursor: move;/*设置鼠标在其区域内的样式，move为十字星*/
+    transform-origin: 0 50%;/*设置旋转基点*/
+    transform: rotateY(0);
+}
+.page{
+    width: 300px;
+    height: 300px;
+    padding: 1em;/*em代表字节*/
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-indent: 2em;
+}
+.inside{
+    background-color: #d93e2b;
+}
+.outside{
+    background: #fff;
+}
+
+.front-cover .outside{
+    background-image: url(https://img.zcool.cn/community/018f485b752b16a801218d325239b4.jpg@1280w_1l_2o_100sh.jpg);
+    background-repeat: no-repeat;/*不平铺*/
+    background-size: cover;/*覆盖整个容器*/
+    transform: translateZ(3px);
+}
+
+.flip{
+    transform: rotateY(180deg);
+}
+.back-cover .outside{
+    transform: translateZ(-3px);
+}
+.back-cover .inside{
+    background-color: #d93e2b;
+}
+
+.card,
+.shadow{
+
+    width: 196px;
+    height: 132px;
+    position: absolute;
+    left: 60px;
+    top: 60px;
+    transform-origin: 0 100%;/*设置旋转基点，绕着y轴最下方，即x轴旋转*/
+}
+
+.shadow{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.card{
+    background:url(https://images.pexels.com/photos/18101408/pexels-photo-18101408.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
