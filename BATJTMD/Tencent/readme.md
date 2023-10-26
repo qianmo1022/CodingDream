@@ -36,4 +36,25 @@
         .weui-btn_primary
         .weui-btn_danger
         .weui-btn_info
-        
+
+# 跨境电商
+
+- 调研一下市场，小孩玩具，义乌
+- translate AI 代码
+- 定价 openAI 定价（经济学家）
+- 写文案 openAI   prompt engineer
+
+
+aigc 前端工程师初体验
+- AI应用
+    - 基于大模型 
+        open AI的达芬奇   擅长文本处理
+    - 花销
+        tokens 算力
+        API_key
+    - prompt + openAI 接口调用
+    - 返回JSON   继续业务 
+
+AI应用
+- 提示词工程 + openAI sdk + langchain + vue
+
