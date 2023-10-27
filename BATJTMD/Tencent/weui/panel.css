@@ -1,0 +1,23 @@
+.weui-panel {
+    background-color: var(--weui-BG-2);
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+
+}
+
+/* 第一个没必要margin top
+其余的会和前面的panel margin-top
+冒号“：”与前后连接，下文选中的是第一个weui-panel
+当冒号与前方之间有一个空格“ ”时，选择的则是其第一个子元素
+*/
+.weui-panel:first-child {
+    margin-top: 0px;
+}
+.weui-panel__hd {
+    padding: 16px 16px 13px;
+    color: var(--weui-FG-0);
+    font-size: 15px;
+    font-weight: 500;
+    position: relative;
+}
