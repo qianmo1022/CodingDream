@@ -12,3 +12,6 @@ var plusOne = function(digits) {
     digits.unshift(1);
     return digits;
 };
+
+var digits = [9, 9, 9];
+console.log(plusOne(digits));
