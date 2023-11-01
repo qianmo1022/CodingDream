@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* *{
+             font-size: 0;解决换行导致的行内块间留有空隙 
+        } */
+        /* 设置body宽度为280，因为div的宽度为100，所以一行只能放2个div，第三个会被挤到下一行 */
+        /* body{
+            width: 280px;
+        } */
+        body {
+            text-align: center;/* 设置非块级元素（即行内块和行内）的水平居中 */
+        }
+        
+        div{
+            width: 100px;
+            height: 100px;
+            /* display: inline-block;将div转换为行内块元素,可以设置宽高，转化成行内inline则不能设置宽高 */
+            /* 子元素全都浮动的话，父容器只有宽没有高 */
+            float: left;
+
+        }
+        /* 换行的空格被浏览器识别为透明的字体 导致此时的三个item之间有空隙 */
+        .item1{
+            background-color: red;
+            /* float: left;如果只给item1设置左浮动，那么1和2重叠，1脱离文档流，2顺位向前 */
+            /* margin: 0 auto;块级元素水平居中 */
+            /* magrin的的属性设置如果只设置一个值，则四个方向都是这个值，
+            如果设置两个值，则上下为第一个值，左右为第二个值，
+            如果设置三个值，则上为第一个值，左右为第二个值，下为第三个值，
+            如果设置四个值，则按照上右下左的顺序设置 */
+            
+        }
+        .item2{
+            background-color: blue;
+            /* float: left;如果只给item2设置左浮动，则2和3重叠，因为2脱离文档流，3顺位向前 */
+        }
+        /* 给1和2设置浮动，则1和2脱离文档流，3顺位向前位于1的下方 */
+        /* 设置float浮动相当于添加一层浮在原来的层上面 */
+        .item3{
+            background-color: yellow;
+            /* float: left; */
+        }
+    </style>
+</head>
+<body>
+    <div class="item1"></div>
+    <div class="item2"></div>
+    <div class="item3"></div>
+</body>
+</html>
