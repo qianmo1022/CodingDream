@@ -8,7 +8,7 @@ var validPalindrome = function(s) {
         for (let i = 0; i < len; i++) {
             //每个字符都去掉一次，判断是否是回文
             const str = s.split('').splice(i, 1).join('')
-            if (isPalindrome(str)) return true
+            if (isPalindrome(str)) return true 
         }
     }
 
