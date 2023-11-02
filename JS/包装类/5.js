@@ -33,6 +33,7 @@
 // var str = 'abcd'
 // // str.length = 2
 // //new String('abcd').length = 2 delete
+// 可访问但不可修改
 // console.log(str.length);//4
 
 // 阿里面试题
@@ -45,4 +46,4 @@ if (test.length == 6) {// new String('string').length == 6
     // delete
 }
 // new String(test).sign
-console.log(test.sign);// undefined
+console.log(test.sign);// 有声明无赋值所以打印undefined
