@@ -1,0 +1,21 @@
+<!-- <script>
+    //Object.create()
+
+    let obj = {
+        a : 1
+    }
+
+    let obj2 = Object.create(obj);
+
+
+    //网易：所有的对象最终都会继承自Object.prototype？
+    // let obj2 = Object.create(null); //这样就不会继承Object.prototype，没有原型
+    //typeof null === 'object'这是一个bug
+    // 引用类型存在堆里面，原始类型存在栈里面
+</script>  -->
+
+<script>
+    let num = 123
+    console.log(num.toString());
+    //new Number(123).toString()//通过原型链找到Object.prototype.toString()
+</script>
