@@ -11,15 +11,17 @@
 //     this.bar()
 // }
 
-function foo () {
-    var b = 1
-    bar()
-}
-function bar () {
-    console.log(this.b);
-}
-foo ()
+var b = 2
+function foo() {  // [[scope]]
+  var b = 1
 
-function baz( ) {
+  function bar() {
+    baz()
+  }
+  function baz() {
     console.log(this.b);
+  }
+  bar()
 }
+
+foo()// 2，因为this指向的是window，window.b = 2

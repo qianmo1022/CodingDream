@@ -14,8 +14,8 @@
 var arr = [1,[2,[3,4]]]
 
 function flatten(arr){
-    return arr.reduce(function(pre, item){
-       return pre.concat(Array.isArray(item)?flatten(item):item)
-    },[])
+    return arr.reduce(function(pre, item){// pre是上一次的返回值，item是当前值
+       return pre.concat(Array.isArray(item)?flatten(item):item)// 如果item是数组的话，递归调用flatten函数，否则直接concat到pre中
+    },[])// []是初始值，如果不写默认为数组的第一个值
 }
 console.log(flatten(arr));// [ 1, 2, 3, 4 ]
