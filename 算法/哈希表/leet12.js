@@ -10,3 +10,5 @@ var intToRoman = function(num) {
     }
     return roman;
 };
+
+console.log(intToRoman(3999));
