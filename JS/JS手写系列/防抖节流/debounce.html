@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <form onsubmit="send()" >
+        <div>
+            <label for="user">账号</label>
+            <input type="text" id="user">
+        </div>
+        <div>
+            <label for="password">密码</label>
+            <input type="password" id="password">
+        </div>
+        <button type="submit">提交</button>
+    </form> -->
+
+    <button id="btn">提交</button>
+
+    <script>
+        let btn = document.getElementById('btn');
+        function send(e){
+            console.log(this,'提交完成',e);
+        }
+
+        btn.addEventListener('click', debounce(send,1000));//send不打括号，表示传递的是函数的引用，而不是函数的执行结果,所以不会立即执行，而是在click事件触发时执行
+        //而debounce(send, 1000)是一个函数的执行，所以定义debounce函数时，需要返回一个函数，这个函数才是真正的事件处理函数
+
+        function debounce(fn, delay){//利用闭包，保存定时器的id，每次调用debounce函数时，都会创建一个新的闭包，
+            let timer = null;        //所以每次调用debounce函数时，都会创建一个新的定时器，而不会影响到其他的定时器
+   
+            return function(){
+                // aeguments是一个类数组对象，包含了所有的参数，所以可以使用arguments来获取所有的参数
+                let args = arguments;//保存函数的参数
+
+                if(timer){
+                    clearTimeout(timer);//如果在delay时间内，再次触发事件，就会清除上一次的定时器，重新计时
+                }
+                timer = setTimeout(() => {//箭头函数没有this，所以this指向的是外层的this，即btn
+                    fn.call(this, ...args);//使用call方法，将this指向btn，将参数传递给send函数
+                }, delay);
+            }
+
+        }
+    </script>
+</body>
+</html>
