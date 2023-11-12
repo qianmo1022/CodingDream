@@ -9,8 +9,8 @@
     <button id="btn">提交</button>
     <script>
         let btn = document.getElementById('btn');
-        function send (){
-            console.log('提交了');
+        function send (e){
+            console.log(this,'提交了',e);
         }
         btn.addEventListener('click',throttle(send,1000))
 
@@ -18,8 +18,8 @@
             let prevTime = Date.now();
 
             return function(){
-                if (Date.now()-prevTime > delay){
-                    fn.apply(this, ...arguments);
+                if (Date.now() - prevTime > delay){
+                    fn.apply(this, arguments);// apply和call的区别是apply接受的是数组参数，call接受的是单个参数
                     prevTime = Date.now();
                 }
             }
