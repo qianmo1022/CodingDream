@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录框</title>
+    <style>
+        #modal{
+            width: 300px;
+            height: 300px;
+            line-height: 200px;
+            background-color: #ccc;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border: 1px solid #000;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <button id="open">打开弹框</button>
+    <button id="close">关闭弹框</button>
+
+    <button id="open2">打开弹框2</button>
+    <script>
+        //  立即执行函数
+        // 闭包的方式来实现单例模式
+        const Modal = (function(){
+            //  创建闭包
+            let modal = null; //自由变量，用来存储唯一实例
+            return function(){
+                if(!modal){
+                    modal = document.createElement('div');
+                    modal.innerHTML = '我是一个全局唯一的登录框';
+                    modal.style.display = 'none';
+                    modal.id = 'modal';
+                    document.body.appendChild(modal);
+                }
+                return modal
+            }
+        })();
+        // const modal = new Modal();
+        document.getElementById('open').onclick = function(){
+            const modal = new Modal();
+            modal.style.display = 'block';
+        }
+        document.getElementById('open2').onclick = function(){
+            const modal = new Modal();
+            modal.style.display = 'block';
+        }
+        document.getElementById('close').onclick = function(){
+            const modal = new Modal();
+            modal.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
