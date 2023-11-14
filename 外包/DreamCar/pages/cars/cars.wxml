@@ -1,0 +1,22 @@
+<view class="hero">
+  YYY
+  <button bindtap="doLogin">
+  按钮
+  </button>
+  <view class="car">
+  <view class="hd">
+    <text>{{info.name}}</text>
+  </view>
+  <view class="bd">
+    <text>{{info.model}}</text>
+  </view>
+
+  <view>
+  <text>{{info.price}}</text>
+  </view>
+  
+  <view>
+      <image src="{{info.pic}}" mode=""/>
+  </view>
+  </view>
+</view>
