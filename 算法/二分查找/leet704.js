@@ -15,7 +15,7 @@
 // };
 
 var search = function(nums, target) {
-    nums.sort((a,b) => a-b);//二分查找前需要排序
+    nums.sort((a,b) => a-b);//二分查找前需要排序，按照升序排列
     let left = 0,mid = 0;
     let right = nums.length-1;
     while(left <= right){
