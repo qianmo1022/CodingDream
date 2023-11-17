@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalStorage 前端</title>
+</head>
+<body>
+    <div class="wrapper">
+        <h2>LOCAL TAPAS</h2>
+        <p></p>
+        <ul class="plates">
+            <li>Loading Tapas...</li>
+        </ul>
+        <form action="" class="add-items">
+            <input type="text" name="item" required placeholder="Item Name" ><!-- html5特有required:必填,placeholder:提示 -->
+            <input type="submit" value="+ Add Item">
+        </form>
+    </div>
+
+    <script>    
+        // window.localStorage.setItem('name', 'batman');
+        const addItems = document.querySelector('.add-items');//获取form表单
+        const itemsList = document.querySelector('.plates');//获取ul
+        const items = JSON.parse(localStorage.getItem('items') || [] )
+        function addItem(e) {
+            e.preventDefault();//阻止浏览器表单的默认行为
+            // 阻止todos结构
+            const item = {
+                text: this.querySelector('[name=item]').value,//获取input的值
+                done: false
+            }
+            // console.log(item)
+            items.push(item)//将input的值添加到items数组中
+            // DOM 更新的业务逻辑，重新渲染
+            populateList(items, itemsList)//调用populateList函数,将items数组中的值添加到ul中
+            this.reset()//清空input的值,考虑用户体验
+            // 序列化一下
+            localStorage.setItem('items',JSON.stringify(items))//将items数组转化成字符串存储到localStorage中
+        }
+        function populateList(plates = [], platesList) {
+            // map() 将原数组返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值，新数组通过callback函数return创建。
+            // map() 方法按照原始数组元素顺序依次处理元素。
+            // join() 把数组转化成字符串，把数组中的所有元素放入一个字符串。元素是通过指定的分隔符进行分隔的。
+            // label for 属性规定 label 与哪个表单元素绑定,当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单元素上,为了用户体验的考虑
+            platesList.innerHTML = plates.map((plate, i) => {
+                return `
+                    <li>
+                        <input type="checkbox" data-index=${i} id="item${i}" ${plate.done ? 'checked' : ''}>
+                        <label for = "item${i}">${plate.text}</label>
+                    </li>
+                `
+            }).join('')
+        }
+        function toggledDone (e) {
+            console.log(e.target.nodeName);
+            if(e.target.nodeName === 'INPUT') {//判断点击的是否为input
+                // input checkbox处理逻辑
+                // console.log(e.target);
+                const el = e.target;//获取点击的元素
+                const index = el.dataset.index;//获取点击元素的data-index的值
+                // console.log(index);
+                items[index].done = !items[index].done;//将点击元素的done属性取反
+                localStorage.setItem('items',JSON.stringify(items))//将items数组转化成字符串存储到localStorage中
+                populateList(items, itemsList)//调用populateList函数,将items数组中的值添加到ul中
+            }
+        }
+
+        addItems.addEventListener('submit', addItem)//监听submit事件
+        // 父元素上绑定事件，事件委托，性能好
+        itemsList.addEventListener('click', toggledDone)//监听click事件
+        window.onload = function() {
+            populateList(items, itemsList)//调用populateList函数,将items数组中的值添加到ul中
+        }
+
+    </script>
+
+</body>
+</html>
