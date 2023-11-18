@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">新歌速递</button>
+    <ul id="ul">
+        <li>
+            test
+        </li>
+    </ul>
+
+    <script>
+        const btn = document.getElementById('btn');
+        btn.addEventListener('click', () => {
+            // 朝网易云的服务器上的后端代码发一个http请求
+            let xhr = new XMLHttpRequest();//创建一个请求对象
+            xhr.open('GET', 'http://192.168.31.45:3000/top/song?type=7', true);//true表示异步
+            xhr.onreadystatechange = () => {//监听请求对象的状态
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    let result = JSON.parse(xhr.responseText)//请求成功后，服务器返回的数据
+                    // console.log(result);
+                    result.data.forEach( song => {
+                        let li = document.createElement('li');
+                        li.innerHTML = song.name;
+                        document.getElementById('ul').appendChild(li);
+                    })
+
+
+                }
+            }
+            xhr.send();//发送请求
+
+
+        })
+    </script>
+</body>
+</html>
