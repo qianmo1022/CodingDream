@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+.login__header {
+    padding: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;    
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.login__header-title {
+    display: flex;
+    align-items: center;
+}
+.login__header-title i {
+    color: red;
+    font-size: 24px;
+}
+.login__header-title span {
+    line-height: 24.67px;
+}
+.login__header-back {
+    position:absolute ;
+    left: 30px;
+
+}
+.login__header-back i {
+    font-size: 24px;
+}
+.login__body {
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.login__body input,button,a {
+    width: 200px;
+    margin: 5px;
+}
+.login__body input {
+    height: 50px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding-left: 10px;
+    background-color: rgb(237, 242, 243);
+}
+.login__body button {
+    height: 42px;
+    border: none;
+    border-radius: 25px;
+    background-color: rgb(255, 187, 188);
+    color: rgb(255, 207, 207);
+    font-weight: bold;
+}
+.login__body a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(64, 127, 187);
+    font-weight: bold;
+    font-size: 12px;
+}
+.Toast {
+    background-color: rgba(76, 76, 76, 0.3);
+    color: rgb(237, 237, 237);
+    border-radius: 10px;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Toast i {
+    font-size: 66px;
+
+}
