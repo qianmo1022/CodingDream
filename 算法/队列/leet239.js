@@ -11,4 +11,31 @@ let nums = [1,3,-1,-3,5,3,6,7], k = 3;
 //     return max;
 // };
 
-// console.log(maxSlidingWindow(nums, k));
+
+
+var maxSlidingWindow = function(nums, k) {
+    //在窗口移动的过程中，只根据发生变化的元素对最大值进行更新
+    const len = nums.length;
+    const res = [];
+    const deque = [];//双端队列，保存当前窗口中最大值的数组下标
+    for(let i = 0; i < len; i++) {
+        //当队列不为空，且队列尾部元素小于当前元素时，将队列尾部元素出队
+        while(deque.length && nums[deque[deque.length - 1]] < nums[i]) {
+            deque.pop();
+        }
+        //将当前元素的下标入队
+        deque.push(i);
+        //当队列头部元素的下标小于滑动窗口左边界时，将队列头部元素出队
+        while(deque.length && deque[0] <= i - k) {
+            deque.shift();
+        }
+        //当窗口长度为k时，保存当前窗口中最大值
+        if(i >= k - 1) {
+            res.push(nums[deque[0]]);
+        }
+    }
+
+    return res;
+};
+
+console.log(maxSlidingWindow(nums, k));
