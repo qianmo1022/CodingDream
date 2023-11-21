@@ -19,7 +19,7 @@ var maxSlidingWindow = function(nums, k) {
     const res = [];
     const deque = [];//双端队列，保存当前窗口中最大值的数组下标
     for(let i = 0; i < len; i++) {
-        //当队列不为空，且队列尾部元素小于当前元素时，将队列尾部元素出队
+        //当队列不为空，且队列尾部元素小于等于当前元素时，将队列尾部元素出队
         while(deque.length && nums[deque[deque.length - 1]] <= nums[i]) {
             deque.pop();
         }
