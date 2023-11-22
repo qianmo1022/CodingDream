@@ -1,6 +1,6 @@
 console.log('script start')
-async function async1() {
-    await async2() //浏览器给await开小灶，相当于跟在await后面的代码变为同步代码
+async function async1() {//async声明的函数返回的是一个promise对象，执行使相当于同步代码
+    await async2() //浏览器给await开小灶，相当于紧跟在await后面的代码变为同步代码
     console.log('async1 end')
 }
 async function async2() {
