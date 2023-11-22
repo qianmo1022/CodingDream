@@ -4,8 +4,8 @@ function ListNode(val, next) {
 }
 
 var mergeTwoLists = function(list1, list2) {
-    const ret = new ListNode(0, null);
-    let cur = ret;
+    const ret = new ListNode(0, null);//创建一个新的链表，头节点为0
+    let cur = ret;//cur指向ret,不用直接操作ret，因为ret发生改变之后，就不是头节点了
     while (list1 && list2) {
         if (list1.val <= list2.val){
             cur.next = list1;
