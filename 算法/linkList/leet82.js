@@ -9,8 +9,7 @@ var deleteDuplicates = function(head) {
             while (cur.next && cur.next.val === x) {
                 cur.next = cur.next.next;
             }
-        }
-        else {
+        }else {//头节点后面两个节点不相等，cur指向下一个节点
             cur = cur.next;
         }
     }
