@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- 语意化标签 对SEO友好，方便网络爬虫-->
+        <table class="table table-striped">
+            <caption>文章表</caption>
+            <!-- 表头 -->
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>标题</th>
+                    <th>作者</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <form name="postForm">
+            <div class="form-group">
+                <label for="titleInput">标题</label>
+                <input type="text" class="form-control"  id="titleInput" placeholder="请输入标题">
+            </div>
+            <div class="form-group">
+                <label for="authorInput">标题</label>
+                <input type="text" class="form-control"  id="authorInput" placeholder="请输入作者">
+            </div>
+            <button type="submit" class="btn btn-primary">添加</button>
+        </form>
+    </div>
+    
+    <script>
+        fetch('http://localhost:3000/posts')
+            .then(res => res.json())
+            .then(data => {
+                document.querySelector('.table tbody').innerHTML = 
+                data.map(post => `<tr>
+                                    <td>${post.id}</td>
+                                    <td>${post.title}</td>
+                                    <td>${post.author}</td>
+                                    </tr>`).join('')
+            })
+            .catch(err => console.log(err))
+
+        const oForm = document.forms['postForm']//获取表单
+        oForm.addEventListener('submit',function (event) {
+            event.preventDefault()//阻止表单默认提交
+            const newPost = {
+                "title": oForm.querySelector('#titleInput').value,
+                "author": oForm.querySelector('#authorInput').value,
+                 
+            }
+            fetch('http://localhost:3000/posts',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'//请求头,告诉服务器请求体的格式
+                },
+                body: JSON.stringify(newPost),//请求体,将对象转换为JSON字符串
+            }).then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+        })
+    </script>
+</body>
+</html>

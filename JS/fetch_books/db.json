@@ -1,0 +1,36 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "JavaScript You don't know",
+      "author": "菌菌"
+    },
+    {
+      "id": 2,
+      "title": "JavaScript高级程序设计",
+      "author": "进哥哥"
+    },
+    {
+      "title": "设计模式",
+      "author": "江总",
+      "id": 3
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    },
+    {
+      "id": 2,
+      "body": "学到了",
+      "postId": 2
+    },
+    {
+      "body": "原来如此",
+      "postId": "1",
+      "id": 3
+    }
+  ]
+}
