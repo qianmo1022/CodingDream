@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <template id="tel">
+        <div>
+            <h1>你好 {{message}}</h1>
+            <h2>{{count}}</h2>
+            <!-- 传统开发方式中,数据和视图是分离的,数据变化,视图不会自动更新，需要手动操作DOM，这样会导致代码量大，维护成本高 -->
+            <!-- Vue中,数据和视图是分离的,数据变化,视图会自动更新 -->
+            <button @click="add">+1</button>
+            <button @click="decrease">-1</button>
+        </div>
+    </template>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        // Vue以数据为中心,数据驱动视图,操作数据源,视图自动更新
+        Vue.createApp({
+            template:'#tel',
+            data:function(){
+                return {
+                    message:'菌菌大帅哥',
+                    count:1
+                }
+            },
+            methods:{
+                add:function(){//这里的this指向的是Vue实例，因为这里是Vue实例的方法，如果使用箭头函数,这里的this指向的是window
+                    this.count++;
+                    console.log(this);
+                },
+                decrease:function(){
+                    this.count--
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
