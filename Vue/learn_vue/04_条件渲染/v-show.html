@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="app">  </div>
+    <template id="my-app">
+        <h2 v-show="isShow">hello world</h2>
+
+
+
+        <button @click="change">切换</button>
+        <!-- v-show和v-if的区别在于，v-show是通过display来控制元素的显示和隐藏，v-if是通过添加和删除元素来控制元素的显示和隐藏 -->
+        <!-- 频繁切换的时候，使用v-show,因为v-show不会频繁的添加和删除元素，所以性能更好 -->
+    </template>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const App = {
+            template:'#my-app',
+            data(){
+                return {
+                   isShow:true,                }
+            },
+            methods:{
+                change(){
+                    this.isShow = !this.isShow
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+</html>
