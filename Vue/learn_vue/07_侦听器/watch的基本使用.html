@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">    </div>
+    <template id="my-app">
+        <h2>今天温度：{{temp}}度</h2>
+        <h3>建议穿：{{suggestion}}</h3>
+
+        <button @click="add">+</button>
+        <button @click="dec">-</button>
+    </template>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const App = {
+            template:'#my-app',
+            data() {
+                return {
+                    temp:30,
+                    suggestion:'夹克'
+                }
+            },
+            // computed和watch的区别：
+            // 1. computed是计算属性，watch是监听属性
+            // 2. computed是有缓存的，当多次使用计算属性时，计算属性中的逻辑只会执行一次，当调用值发生变化时，才会重新执行
+            // 3. watch是没有缓存的，当数据源发生变化时，会立即执行watch中的函数
+            // 4. computed中的函数必须有返回值，watch中的函数不需要有返回值
+
+            watch: {//watch监听数据源的变化，当数据源发生变化时，会自动执行watch中的函数
+                temp: {
+                    handler: function(newVal, oldVal) {//handler函数中的第一个参数是新值，第二个参数是旧值
+                        if (newVal >= 30) {
+                            this.suggestion = '短袖'
+                        } else if (newVal <= 0) {
+                            this.suggestion = '羽绒服'
+                        } else {
+                            this.suggestion = '夹克'
+                        }
+                    },
+                    immediate: true//immediate: true表示在初始化的时候，也会执行handler函数
+                }
+                // temp: function(newVal, oldVal) {
+                //     if (newVal >= 30) {
+                //         this.suggestion = '短袖'
+                //     } else if (newVal <= 0) {
+                //         this.suggestion = '羽绒服'
+                //     } else {
+                //         this.suggestion = '夹克'
+                //     }
+                // }
+            },
+            methods: {
+               add() {
+                this.temp+=5
+               },
+               dec() {
+                this.temp-=5
+               }
+            }
+        }
+
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+</html>

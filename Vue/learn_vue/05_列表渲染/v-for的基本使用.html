@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">    </div>
+    <template id="my-app">
+        <h2>歌曲列表</h2>
+        <ul>
+            <li v-for="(item,index) in songs" :key="index">
+            <!-- :key="index" 用来提高渲染的效率 -->
+                {{index + 1}}--{{item}}
+                <a href="#" @click="del(index)">X</a>
+            </li>
+            <!-- v-for的基本使用 -->
+        </ul>
+    </template>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const App = {
+            template:'#my-app',
+            data() {
+                return {
+                    songs:[
+                        '夜曲',
+                        '夜的第七章',
+                        '七里香',
+                        '发如雪',
+                        '青花瓷',
+                        '稻香',
+                        '东风破',
+                        '晴天',
+                        '双截棍',
+                        
+                    ]
+                }
+            },
+            methods: {
+                del(i) {
+                    this.songs.splice(i,1)//删除数组中的元素,splice(从哪个位置开始删除，删除几个)
+                }
+            }
+        }
+
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+</html>
