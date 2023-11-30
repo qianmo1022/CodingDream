@@ -1,0 +1,3 @@
+var detectCycle = function(head) {
+    
+}; 
