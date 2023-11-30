@@ -11,6 +11,7 @@
         <h2>歌曲列表</h2>
         <ul>
             <li v-for="(item,index) in songs" :key="index">
+            <!-- 按照顺序两个属性：item和index分别代表数组中的每一项和索 -->
             <!-- :key="index" 用来提高渲染的效率 -->
                 {{index + 1}}--{{item}}
                 <a href="#" @click="del(index)">X</a>

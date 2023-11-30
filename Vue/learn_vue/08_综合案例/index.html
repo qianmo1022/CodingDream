@@ -25,6 +25,7 @@
       </thead>
       <tbody>
         <tr  v-for="(item,index) in books" :key="item.id">
+          <!-- 因为我们希望每一本书都生成新的一行（tr），所以我们在tr标签上使用了v-for指令，每一个单元格(td) -->
           <td>{{item.id}}</td>
           <td>{{item.name}}</td>
           <td>{{item.date}}</td>
