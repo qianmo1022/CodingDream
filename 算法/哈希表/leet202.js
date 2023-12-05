@@ -33,7 +33,7 @@ var isHappy = function (n) {
         // n出现过，证明已陷入无限循环
         if (m.has(n)) return false
         if (n === 1) return true
-        m.set(n, 1)
+        m.set(n, 1)//将n存入哈希表
         n = getSum(n)
     }
 }
