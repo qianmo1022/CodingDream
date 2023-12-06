@@ -6,8 +6,14 @@ const routes = [
     component:()=> import('@/views/Login.vue')
   },
   {
-    path:'/home/#',
-    name:'home',
+    // path:'/home/:user',
+
+    // path:'/home',
+
+    // path:'/home/:user',
+    // name:'home',
+    
+    path:'/home',
     component:()=> import('@/views/Home.vue')
   }
 ]

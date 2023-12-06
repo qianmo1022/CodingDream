@@ -5,7 +5,10 @@
                 <span>选课系统</span>
                 <el-dropdown>
                     <span class="el-dropdown-link">
-                        欢迎{{ $route.hash.slice(1) }}
+                        <!-- 欢迎{{ $route.params.user }}-->
+                        <!-- 欢迎{{ $route.query.user }} -->
+                        <!-- 欢迎{{ $route.params.user }} -->
+                        欢迎{{ $route.hash.slice(1)}}
                     </span>
                     <template #dropdown>
                         <el-dropdown-menu>
