@@ -70,18 +70,18 @@
         margin-top: 30px;;
         input{
             font-size: 20px;
-            flex:1;
+            flex:1;//占满剩余空间
             padding:0px 10px;
         }
         button{
             font-size: 36px;
-            flex:1;
+            flex:1;//占满剩余空间
             border-radius: 50px;
             border: none;
             background-color: rgb(7, 170, 235);
             color:#fff;
             padding: 5px 0;
-            cursor: pointer;
+            cursor: pointer;//鼠标移上去变成小手
         }
     }
 }
