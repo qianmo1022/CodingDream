@@ -17,8 +17,9 @@ function maxDepth(root) {
     let depth = 0;
   
     while (queue.length) {
-      depth++;
-      for (let i = 0; i < queue.length; i++) {//这里是关键，每次循环都是把当前层的节点都出队，然后把下一层的节点都入队，所以每次循环都是一层
+        let levelSize = queue.length;
+        depth++;
+      for (let i = 0; i < levelSize; i++) {//这里是关键，每次循环都是把当前层的节点都出队，然后把下一层的节点都入队，所以每次循环都是一层
         const node = queue.shift();
         if (node.left) {
           queue.push(node.left);
