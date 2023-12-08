@@ -6,6 +6,7 @@ var removeNthFromEnd = function(head, n) {
     while (n--) {//fast先走n步
         fast = fast.next;
     }
+    // 由于fast先走了n步，当fast走到最后一个节点时，slow相当于从后往前数的第n个节点
     while (fast.next) {//fast走到最后一个节点时，slow刚好走到倒数第n个节点的前一个节点
         fast = fast.next;
         slow = slow.next;
