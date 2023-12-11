@@ -1,5 +1,5 @@
 import openai
-openai.api_key = "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"
+openai.api_key = "sk-xxx" # 你的API KEY
 COMPLETION_MODEL = "text-davinci-003" #模型常量 文本生成模型：达芬奇第三版
 
 # 声明一个字符串模板
