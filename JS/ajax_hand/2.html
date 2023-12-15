@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let template = '我是{{name}},年龄{{age}},性别{{sex}}'
+        let pesrson = {
+            name: '小明',
+            age: 18,
+            sex: '男'
+        }
+        console.log(render(template,pesrson));
+
+        function render (template,data) {
+            // {}在reg中是特定字符，在这里我们是想匹配{}本身，所以需要转义
+            // \d代表数字 \w单词 \w+多个单词 
+            // (\w+)表示分组 () 拿出来
+            const reg = /\{\{(\w+)\}\}/
+            // test方法返回布尔值 true 或者 false
+            if (reg.test(template)) {
+                console.log('有的', reg.exec(template));
+                const name = reg.exec(template)[1]
+                console.log(name);
+                template = template.replace(reg,data[name])
+                // console.log(template);
+                return render(template,data)
+            }
+            return template
+            // console.log(Object.prototype.toString.call(reg));// [object RegExp]
+        }
+    </script>
+</body>
+</html>
