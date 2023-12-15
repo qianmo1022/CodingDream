@@ -15,7 +15,9 @@ export function get(url){
     }
 }
 
-
+// export default get 
+// export default 抛出的是函数,import 时不需要加{}
+// 当export 抛出的是一个对象时，import 时需要加上{}，因为对象可以有多个属性，所以需要加{}
 
 // let resFn = get('/seller')()
 // resFn().then(data => {

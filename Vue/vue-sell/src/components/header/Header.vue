@@ -72,7 +72,7 @@
   @import '@/common/style/mixin.less';
   .header{
     background: @color-background-ss;
-    position: relative;
+    position: relative;//相对定位
     .content-wrapper{
       display: flex;
       padding: 24px 12px 18px 24px;

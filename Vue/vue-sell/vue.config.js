@@ -2,12 +2,12 @@ const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   transpileDependencies: true,
   lintOnSave:false,
-  devServer:{
+  devServer:{//配置代理
     proxy:{
       '/api':{
         target:'http://ustbhuangyi.com/sell/',
         changeOrigin:true,
-        pathRewrite:{
+        pathRewrite:{//路径重写
           '^/api': '/api'
         }
       }
