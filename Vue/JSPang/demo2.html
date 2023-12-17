@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>局部组件创建和注册方法</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.3.4/vue.global.js"></script> 
+</head>
+<body>
+    <div id="app">
+
+    </div>
+</body>
+<script>
+    // 局部组件，只能在当前组件中使用，性能高，但是使用起来不方便
+    const counter = {
+        data() {
+            return {
+                count:0
+            }
+        },
+        template:`
+           <div>
+                {{count}}
+                <button @click="count++">+1</button>
+            </div>
+        `
+    }
+    const xieDaJiao = {
+        template:`
+            <div>谢大脚</div>
+        `
+    }
+
+    const app = Vue.createApp({
+        // 局部组件的注册
+        components:{
+            counter,
+            'xie-da-jiao':xieDaJiao
+        },
+       template:`
+            <website />
+            <describe />
+            <counter />
+            <xie-da-jiao>
+       `    
+    })
+
+    // 全局组件的注册
+    app.component('website',{
+        template:`
+        <h2>JSPang.com</h2>
+        `
+    })
+    app.component('describe',{
+        template:`
+        <div>技术胖的博客</div>
+        `
+    })
+
+
+    // 全局组件，只要定义，处处可用，性能不高，但是使用起来方便、简单
+    app.mount('#app')
+</script>
+</html>
+
+<!-- 在 Vue.js 中，组件可以被声明为全局的或局部的。
+
+全局组件：一旦被注册，可以在任何新创建的 Vue 根实例（new Vue）的模板中使用。全局组件的注册通常在 main.js 文件中进行，使用 Vue.component(tagName, options) 进行注册。
+```
+Vue.component('my-component', {
+    // 选项
+})
+```
+局部组件：只能在其被声明的那个 Vue 实例或者组件中使用。局部组件在其所在的 Vue 实例/组件的 components 选项中进行注册。
+```
+new Vue({
+    el: '#app',
+    components: {
+        'my-component': {
+            // 选项
+        }
+    }
+})
+```
+在你的代码中，counter 和 xieDaJiao 就是局部组件的例子，它们只能在当前的 Vue 实例中使用。 -->
