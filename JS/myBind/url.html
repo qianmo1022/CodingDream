@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // ? 查询字符串 query string -> 后台 
+        // js parse url 得到params url 中的参数
+        // {user:'阿飞',age:17}
+        // function getParams(url){
+        //     const res = {}
+        //     // if (url.indexOf('?') !== -1)
+        //     if (url.includes('?')) {
+        //         const str = url.split('?')[1]// split分割后，前部分为0，后部分为1
+        //         // console.log(str);
+        //         const arr = str.split('&')
+        //         arr.forEach(item => {
+        //             // const key = item.split('=')[0]
+        //             // const val = item.split('=')[1]
+        //             const [key,val] = item.split('=')// 解构赋值
+        //             res[key] = decodeURIComponent(val)// 解码
+        //         })
+        //     }
+        //     return res
+        // }
+        // // get 请求 会编码url
+        // const user = getParams(
+        //     'http://www.baidu.com?user=%E9%98%BF%E9%A3%9E&age=16'
+        // )
+        // console.log(user);   entry
+        const urlSearchParams = 
+            new URLSearchParams('?user=%E9%98%BF%E9%A3%9E&age=16')
+        console.log(urlSearchParams.entries().next());
+        // Object.fromEntries
+        const params = Object.fromEntries(urlSearchParams.entries())
+        console.log(params);
+    </script>
+</body>
+</html>

@@ -7,12 +7,11 @@ Function.prototype.myBind = function (context,...args) {
     }
     // this()
     context = context || window//位于闭包中，this指向window
-    let that = this
+    let that = this // 保存原先的函数
     return function fn(...innerArgs) {
         // this // 此处的this和上面的this不是同一个this，this丢失，需要保存
         if (this instanceof fn) {// new 的方式来运行
-              
-            
+            return new that(...args, ...innerArgs)
         }
         return that.apply(context, [...args,...innerArgs]) // 原先的函数执行，this手动指定为context
         // 原先的函数执行，this手动指定为context
