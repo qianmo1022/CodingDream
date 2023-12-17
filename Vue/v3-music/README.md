@@ -73,4 +73,11 @@
     
     - 框架UI组件
     - 业务组件/components
-    
+
+- 路由的组件流程
+    - router    配置文件夹
+    - views/    页面级别组件
+    - 路由接管了应用
+        会有好多页面的，views 比components 级别高
+    - App.vue router-view Root.vue
+    - 其他各个页面，多级路由
