@@ -21,6 +21,7 @@ export default {
     },
     methods: {
         handle(val) {
+            if(!val) return
             this.msg = val
         }
     }

@@ -20,20 +20,21 @@ export default {
     //     }
     // },
 
+    // lists计算属性依赖于msg，每次msg变化，lists都会重新计算，所以无法实现持续添加li结构
     computed:{
         lists(){
             let list = ['html', 'css']
-            if(!this.msg) return
-            list.push(this.msg)
+            if(this.msg){
+                list.push(this.msg)
+            }
             return list
         }
-    }
+    },
     data() {
         return {
-            lists: ['html', 'css'],
-            message: 'js'
+            // lists: ['html', 'css']
         }
-    },
+    }
     
 }
 </script>
