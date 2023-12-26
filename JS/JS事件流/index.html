@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app{
+            width: 400px;
+            height: 400px;
+            background-color: aqua;
+        }
+        #wrap{
+            width: 200px;
+            height: 200px;
+            background-color: blueviolet;
+        }
+        #box{
+            width: 50px;
+            height: 50px;
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="wrap">
+            <div id="box"></div>
+        </div>
+    </div>
+
+    <script>
+        let app = document.getElementById('app');
+        let wrap = document.getElementById('wrap');
+        let box = document.getElementById('box');
+
+        // app.addEventListener('click', function(e){ // 绑定，订阅，注册
+        //     console.log('app');
+        //     // e.stopPropagation()
+        //     e.stopImmediatePropagation()
+        // }, true) // true 捕获， false 冒泡 , 默认是false
+        
+        // wrap.addEventListener('click', function(){
+        //     console.log('wrap');
+        // }, true)
+        
+        box.addEventListener('mouseenter', function(e){
+            console.log('box');
+            //阻止默认事件的传播，用在冒泡阶段阻止冒泡，用在捕获阶段阻止捕获
+            // e.stopPropagation()
+            // console.log(e);
+            e.stopImmediatePropagation()
+        },false)
+        box.addEventListener('click', function(){
+            console.log('box2');
+        },false)
+    </script>
+</body>
+</html>
