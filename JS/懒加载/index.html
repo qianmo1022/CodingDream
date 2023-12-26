@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            display: block;
+            height: 300px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <img class='img-item' src="" data-original="https://images.pexels.com/photos/17976239/pexels-photo-17976239.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
+    <img class='img-item' src="" data-original="https://images.pexels.com/photos/16600092/pexels-photo-16600092.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load" alt="">
+    <img class='img-item' src="" data-original="https://images.pexels.com/photos/1802268/pexels-photo-1802268.jpeg?auto=compress&cs=tinysrgb&w=800" alt="">
+    <img class='img-item' src="" data-original="https://images.pexels.com/photos/1556797/pexels-photo-1556797.jpeg?auto=compress&cs=tinysrgb&w=800" alt="">
+    <img class='img-item' src="" data-original="https://images.pexels.com/photos/1598073/pexels-photo-1598073.jpeg?auto=compress&cs=tinysrgb&w=800" alt="">
+    <img class='img-item' src="" data-original="https://images.pexels.com/photos/620337/pexels-photo-620337.jpeg" alt="">
+    <img class='img-item' src="" data-original="https://images.pexels.com/photos/1624438/pexels-photo-1624438.jpeg?auto=compress&cs=tinysrgb&w=800" alt="">
+
+    <script>
+        // 判断图片有没有进入可视区域，有的话就将其data-original的值赋给src
+        // offsetHeight: 元素自身的高度，包含padding,clientHeight: 元素自身的高度，不包含padding
+        // innerHeight: 浏览器窗口的高度(只有window对象有这个属性)
+        let viewHeight = window.innerHeight
+        // console.log(viewHeight);
+
+        function lazyLoad(){
+            let imgs = document.querySelectorAll('img[data-original]')
+            Array.from(imgs).forEach(el => {
+                let rect = el.getBoundingClientRect()//获取容器的几何信息
+                if (rect.top < viewHeight) {
+                    let image = new Image()
+                    image.src = el.dataset.original// 'data-'开头的属性都是自定义属性,使用dataset可以获取自定义属性的值
+                    image.onload = function(){
+                        el.src = image.src
+                    }
+                el.removeAttribute('data-original')
+                }
+            })
+        }
+
+        lazyLoad()
+        document.addEventListener('scroll',lazyLoad)
+    </script>
+</body>
+</html>
