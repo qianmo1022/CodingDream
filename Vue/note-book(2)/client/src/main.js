@@ -4,7 +4,7 @@ import router from './router'
 import 'amfe-flexible' // 自动设置根字体大小
 import './assets/style/reset.css'
 
-import { Button, Form, Field, CellGroup, Icon } from 'vant';
+import { Button, Form, Field, CellGroup, Icon, Uploader,ActionSheet } from 'vant';
 import 'vant/lib/index.css';
 
 const app = createApp(App);
@@ -16,5 +16,7 @@ app.use(Form);
 app.use(Field);
 app.use(CellGroup);
 app.use(Icon);
+app.use(Uploader); 
+app.use(ActionSheet);
 
 app.mount('#app')
