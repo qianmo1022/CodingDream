@@ -90,6 +90,7 @@ const submitForm = (formEl: FormInstance | undefined) =>{
             const keys = permiss
                 .roleList[param.username === 'admin' ? 'admin' : 'user']
             localStorage.setItem('ms_keys', JSON.stringify(keys))
+            permiss.setkeys(keys)
             router.push('/')
         } else {
             ElMessage.error('请填写完整信息')

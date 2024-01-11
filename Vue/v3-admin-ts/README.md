@@ -38,5 +38,44 @@
    - store
 - 函数的参数
 
+## vue 考题
+- <component :is="comName" />
+   循环或动态输出组件
+- <template />
+   slot
+   不会显示到页面上 接受指令 不添加标签
+
+## 项目亮点
+   - 带有角色校验的菜单
+      - 菜单
+         el-menu>el-submenu>el-menu-item
+      - 当前选中的菜单
+         :default-active="route.path"
+      - 哪些菜单可以看到？
+        指令？ 自定义指令
+        store->permiss roleList user includes ?
+        添加一个数据项 key 任何组件都可以调用
+        setKeys action
+        localStorage 读取
+   - 自定义指令
+      app.directives(name)
+      v-name
+      mounted(el,binding)
+      el['hidden'] = true
+      el.style.opacity = 0; // 隐藏 等价于 v-show的效果
+
+## 项目难点
+   - 多组件状态的共享和设计
+      - vuex和pinia
+         - 用pinia  vuex中有modules需要遵守树状关系 但是pinia中没有，所以pinia很灵活，加一个defineStore方法
+            没有vuex的树状约束 执行一下函数就能拿到hook
+            语法简洁，不用写很多代码
+         - 学vuex 的设计模式，state mutation action getter 安全
+      - 学习过一些项目 GitHub 开源 vue-music
+         vue-admin。。。
+      - 因为当我在多个组件，特别是兄弟或跨页面级别组件，
+         有共享状态需求的时候，我封装成了一个store函数
+         原来是用ref + props + emits 换成了 store
+
 
 
