@@ -20,6 +20,7 @@ import { computed } from 'vue';
 import { currency } from '../currency';
 const store = useStore(); //状态树
 // 借 | 接
+console.log(store);
 const products = computed(() => store.state.products.all); //计算属性
 const addProductToCart = (product) => store.dispatch('cart/addProductToCart', product);
 // console.log(products);

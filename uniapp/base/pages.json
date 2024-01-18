@@ -5,6 +5,14 @@
 			"style": {
 				"navigationBarTitleText": "uni-app"
 			}
+		},
+		{
+			"path" : "pages/about/about",
+			"style" : 
+			{
+				"navigationBarTitleText" : "关于",
+				"enablePullDownRefresh" : false
+			}
 		}
 	],
 	"globalStyle": {

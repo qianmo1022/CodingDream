@@ -51,9 +51,27 @@ const userRegister = (values) => { //  values == [username, password, nickname]
   let _sql = `insert into users set username=?,password=?,nickname=?;`
   return allService.query(_sql, values)
 }
+// 根据类型查找笔记列表
+const findNoteListByType = (note_type) => {
+  let _sql = `select * from note where note_type="${note_type}";`
+  return allService.query(_sql)
+}
+const findNoteDetailById = (id) => {
+  let _sql = `select * from note where id="${id}";`
+  return allService.query(_sql)
+
+}
+// 发布笔记
+const notePublish = (values) => {
+  let _sql = `insert into note set note_content=?,title=?,head_img=?,note_type=?,nickname=?,userId=?,c_time=?,m_time=?;`
+  return allService.query(_sql, values)
+}
 
 module.exports = {
   userLogin,
   userFind,
-  userRegister
+  userRegister,
+  findNoteListByType,
+  findNoteDetailById,
+  notePublish
 }
