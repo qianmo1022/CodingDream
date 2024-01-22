@@ -14,15 +14,15 @@
 
 		<!-- banner -->
 		<view class="banner">
-			<swiper circular :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" indicator-color="#eee" indicator-active-color="#d81e06" >
+			<swiper :indicator-dots="true" :autoplay="false" :interval="3000" :duration="1000" indicator-color="#eee" indicator-active-color="#d81e06" circular>
 				<swiper-item v-for="item in state.banners" :key="item.encodeId">
 					<view class="swiper-item">
 						<image :src="item.pic" mode=""></image>
 					</view>
 				</swiper-item>
-
 			</swiper>
 		</view>
+		
 		<!-- balls -->
 		<view class="balls">
 			<view class="ball-item" v-for="item in state.balls" :key="item.id">
@@ -32,44 +32,72 @@
 				<text>{{item.name}}</text>
 			</view>
 		</view>
+		
 		<!-- 推荐歌单 -->
-		<songList :list = state.recommendList />
+		<songList :list="state.recommendList" title="推荐歌单"/>
+		<!-- 推荐歌曲 -->
+		<recommendSong :list="state.recommendSongs"/>
+		<!-- xxx雷达歌单 -->
+		<songList :list="state.personalizedList" title="蜗牛的雷达歌单"/>
 		
 	</view>
 </template>
 
 <script setup>
-import { apiGetBanner,apiGetBall,apiGetRecommendList } from '@/api/index.js'
+import { apiGetBanner, apiGetBall, apiGetRecommendList, apiGetRecommendSongs, apiGetPersonalizedList } from '@/api/index.js'
 import { onLoad } from '@dcloudio/uni-app'
 import { reactive } from 'vue';
 
 const state = reactive({
 	banners: [],
-	balls:[],
-	recommendList:[]
+	balls: [],
+	recommendList: [],
+	recommendSongs: [],
+	personalizedList: []
 })
 
+
 onLoad(() => {
-	getBall()	
 	getBanner()
+	getBall()
 	getRecommendList()
-}) 
-// 获取Banner图
+	getRecommendSongs()
+	getPersonalizedList()
+})
+
+// 获取banner图
 const getBanner = () => {
-	apiGetBanner({type:2}).then(res => {
+	apiGetBanner({type: 2}).then(res => {
+		// console.log(res.data.banners);
 		state.banners = res.data.banners
 	})
 }
-// 获取圆形图标的入口列表
-const getBall = async() =>{
-	const { data:{data:balls} } = await apiGetBall()
+// 获取入口列表
+const getBall = async() => {
+	const { data: { data: balls } } = await apiGetBall()
+	// console.log(balls);
 	state.balls = balls
 }
-
+// 推荐歌单
 const getRecommendList = async() => {
-	const {data:{recommend:recommend}} =  await apiGetRecommendList()
+	const { data: { recommend: recommend }} = await apiGetRecommendList()
+	// console.log(recommend);
 	state.recommendList = recommend
 }
+// 推荐歌曲
+const getRecommendSongs = async() => {
+	const res = await apiGetRecommendSongs()
+	// console.log(res.data.data.dailySongs);
+	state.recommendSongs = res.data.data.dailySongs
+}
+// 雷达歌单
+const getPersonalizedList = async() => {
+	const res = await apiGetPersonalizedList()
+	console.log(res.data.result);
+	state.personalizedList = res.data.result
+}
+
+
 
 </script>
 
@@ -82,7 +110,6 @@ const getRecommendList = async() => {
 		:deep(.uni-searchbar){
 			height: 100%;
 			padding: 0;
-			border-radius: 100rpx;
 			.uni-searchbar__box{
 				height: 100%;
 				padding: 0;
@@ -91,30 +118,31 @@ const getRecommendList = async() => {
 	}
 	.banner{
 		.swiper-item{
+			width: 100%;
 			height: 100%;
+			border-radius: 10px;
 			overflow: hidden;
 			image{
 				width: 100%;
 				height: 100%;
-				border-radius: 10px;
 			}
 		}
 	}
 	.balls{
 		display: flex;
 		overflow-x: scroll;
-		margin: 30rpx 0;
+		margin: 30rpx 0;  
 		.ball-item{
 			flex: 0 0 20%;
-			font-size: 24rpx;
+			font-size: 20rpx;
 			text-align: center;
 			.icon{
 				width: 70rpx;
 				height: 70rpx;
-				margin: 0 auto;// 居中
+				margin: 0 auto;
 				margin-bottom: 14rpx;
 				background-color: $uni-primary-color;
-				border-radius: 10px;
+				border-radius: 50%;
 				image{
 					width: 100%;
 					height: 100%;

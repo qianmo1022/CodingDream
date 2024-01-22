@@ -28,6 +28,7 @@ import { useStore } from 'vuex'
 
 <style lang="scss">
 .header{
+	background-color: #fff;
 	height: 100rpx;
 	display: flex;
 	justify-content: space-between;

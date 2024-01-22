@@ -13,5 +13,5 @@
 </script>
 
 <style>
-	/*每个页面公共css */
+@import url("https://at.alicdn.com/t/c/font_4310348_lnyw7kg4eu.css");
 </style>
