@@ -42,7 +42,7 @@ const hideMenu = () => {
 <style lang="scss" scoped>
 .menu-left {
 	position: fixed;
-	top: 0;
+	top: 80rpx;
 	z-index: 9999;
 	width: 620rpx;
 	height: 100%;
