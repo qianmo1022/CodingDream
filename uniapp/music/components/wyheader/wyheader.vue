@@ -1,5 +1,5 @@
 <template>
-	<view class="header">
+	<view class="header" :style="{backgroundColor: bgColor}">
 		<uni-icons type="bars" size="24" @click="showMenu"/>
 		<view class="content">
 			<!-- 添加一个插槽 -->
@@ -7,7 +7,7 @@
 		</view>
 		<uni-icons :type="icon" size="24" />
 	</view>
-	<view class="box"></view>
+	<view class="box" v-if="needBox"></view>
 </template>
 
 <script setup>
@@ -19,6 +19,14 @@ import { useStore } from 'vuex'
 		icon:{
 			type:String,
 			default:'mic'
+		},
+		bgColor:{
+			type:String,
+			default:"#fff"
+		},
+		needBox:{
+			type:Boolean,
+			default:true
 		}
 	})
 	const showMenu = () => {
