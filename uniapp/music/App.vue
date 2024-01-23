@@ -4,7 +4,7 @@
 		onLaunch: function() {
 			console.log('App Launch')
 			// 判断用户是否登录
-			let key = uni.getStorageSync('cookie')
+			let key = uni.  ('cookie')
 			if (!key) {
 				this.$store.commit('changeLoginState', false)
 				return
