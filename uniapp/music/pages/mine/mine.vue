@@ -1,6 +1,6 @@
 <template>
 	<view class="mine">
-		<wyheader icon="more-filled" bgColor="transparent" :needBox="false">
+		<wyheader icon="more-filled" bgColor="transparent" :needBox="false" fontColor='#fff'>
 			<template v-slot:content>
 				<view>我的音乐</view>
 			</template>
@@ -9,43 +9,45 @@
 		<menuLeft></menuLeft>
 
 		<view class="mine-bd">
+			<view class="bg" :style="{backgroundImage: `url(${userInfo.profile && userInfo.profile.backgroundUrl})` }"></view>
+			
 			<view class="user">
 				<view class="pic">
-					<image src="../../static/logo.png" mode="aspectFill"></image>
+					<image :src="userInfo.profile && userInfo.profile.avatarUrl" mode="aspectFill"></image>
 				</view>
 
 				<view class="user-online" v-if="isLogin">
 					<view class="username">
-						<text>蜗牛</text>
+						<text>{{userInfo.profile && userInfo.profile.nickname}}</text>
 					</view>
 					<view class="user-desc">
 						<view class="user-desc-horoscope">
 							<text class="iconfont icon-boy"></text>
-							<text>90后</text>
-							<text>射手座</text>
+							<text>{{formateTime(userInfo.profile && userInfo.profile.birthday).ageLever}}后</text>
+							<text>{{formateTime(userInfo.profile && userInfo.profile.birthday).horoscope}}座</text>
 						</view>
 						<view class="user-desc-address">
 							<text>江西 南昌</text>
 						</view>
 						<view class="user-desc-age">
-							<text>村龄7年</text>
+							<text>村龄 {{ ~~(userInfo.createDays / 365) }} 年</text>
 						</view>
 					</view>
 					<view class="user-wyInfo">
 						<view class="wyInfo-gz">
-							<text>10</text>
+							<text>{{userInfo.profile && userInfo.profile.follows}}</text>
 							关注
 						</view>
 						<view class="wyInfo-fs">
-							<text>13</text>
+							<text>{{userInfo.profile && userInfo.profile.followeds}}</text>
 							粉丝
 						</view>
 						<view class="wyInfo-dj">
-							<text>Lv.8</text>
+							<text>Lv.{{userInfo.level}}</text>
 							等级
 						</view>
 						<view class="wyInfo-tg">
-							<text>3121时</text>
+							<text>{{userInfo.listenSongs}}时</text>
 							听歌
 						</view>
 					</view>
@@ -77,6 +79,14 @@
 					<uni-icons type="right" size="16"></uni-icons>
 				</view>
 			</view>
+			
+			<view class="list">
+				<view class="nav">
+					<view class="nav-item" @click="changeNav(index)" :class="{'active':activeNum === index}" v-for="(item,index) in listNav" :key="index">
+						{{ item }}
+					</view>
+				</view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -86,9 +96,13 @@ import { computed, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 import { apiGetUserInfo } from '@/api/mine.js';
 import { onLoad } from '@dcloudio/uni-app';
+import { formateTime } from '@/utils/index.js'
 
 const store = useStore();
 const userInfo = ref({});
+const activeNum = ref(0)
+const listNav = ['音乐','博客','动态']
+const nav_bottom = ref( 750/3/2 + "rpx")
 
 const isLogin = computed(() => {
 	return store.state.loginState;
@@ -106,8 +120,8 @@ const login = () => {
 
 const getUserInfo = async () => {
 	const res = await apiGetUserInfo(store.state.userInfo.userId); // 传入用户uid
-	console.log(res.data.profile);
-	userInfo.value = res.data.profile;
+	console.log(res.data);
+	userInfo.value = res.data;
 };
 
 watch(
@@ -120,12 +134,27 @@ watch(
 	},
 	{ immediate: true }
 );
+
+const changeNav = (index) => {
+	activeNum.value = index
+	nav_bottom.value = 750/3/2 * ((2*index) + 1) + "rpx"
+}
 </script>
 
 <style lang="scss" scoped>
 .mine-bd {
-	padding: 280rpx 30rpx 40rpx;
-	background-color: #93969d;
+	padding: 280rpx 30rpx 80rpx;
+	position: relative;
+	.bg{
+		background-color: #93969d;
+		height: 800rpx;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		background-size: cover;
+		z-index: -1;
+	}
 	.user {
 		.pic {
 			width: 120rpx;
@@ -197,6 +226,42 @@ watch(
 						margin-right: 4rpx;
 					}
 				}
+			}
+		}
+	}
+	.list{
+		position: relative;
+		top: -30rpx;
+		background-color: #fff;
+		margin-left: -30rpx;
+		margin-right: -30rpx;
+		margin-top: 80rpx;
+		border-top-left-radius: 15px;
+		border-top-right-radius: 15px;
+		.nav{
+			display: flex;
+			.nav-item{
+				flex: 1;
+				text-align: center;
+				padding: 30rpx 0;
+				color: #666;
+				&.active{
+					color: #000;
+					position: relative;
+				}
+			}
+			&::after{
+				content: '';
+				display: block;
+				width: 30rpx;
+				height: 6rpx;
+				background-color: $uni-primary-color;
+				position: absolute;
+				left: v-bind(nav_bottom);
+				transform: translateX(-50%);
+				bottom: 15rpx;
+				border-radius: 20rpx;
+				transition: left 0.5s ease;
 			}
 		}
 	}
