@@ -4,7 +4,7 @@
 		onLaunch: function() {
 			console.log('App Launch')
 			// 判断用户是否登录
-			let key = uni.  ('cookie')
+			let key = uni.getStorageSync('cookie')
 			if (!key) {
 				this.$store.commit('changeLoginState', false)
 				return
@@ -55,5 +55,5 @@
 
 <style>
 	/*每个页面公共css */
-	@import url("https://at.alicdn.com/t/c/font_4416312_yya8hpmtu5.css");
+	@import url("//at.alicdn.com/t/c/font_4310348_ld3htxaps4c.css");
 </style>
