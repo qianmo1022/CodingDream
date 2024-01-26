@@ -55,7 +55,7 @@
 
 <style>
 	/*每个页面公共css */
-	@import url("//at.alicdn.com/t/c/font_4310348_ld3htxaps4c.css");
+	@import url("//at.alicdn.com/t/c/font_4310348_1u48pt4420v.css");
 	*{
 		margin: 0;padding: 0;
 	}

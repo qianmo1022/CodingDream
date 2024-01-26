@@ -88,7 +88,7 @@
 				</view>
 				<view class="list-sort">
 					<view class="tab" v-show="showTab[0]">
-						<view class="sort-item" @click="goSongsList" v-for="item in sort_playlist" :key="item.id">
+						<view class="sort-item" @click="goSongsList(item.id)" v-for="item in sort_playlist" :key="item.id">
 							<view class="pic">
 								<image :src="item.coverImgUrl" mode="aspectFill"></image>
 							</view>
@@ -112,6 +112,9 @@
 				</view>
 			</view>
 		</view>
+		
+		<!-- 播放器 -->
+		<musicPlayer bottom="100rpx"/>
 	</scroll-view>
 </template>
 
@@ -181,11 +184,11 @@ const changeNav = (index) => { // 0 1 2   1 3 5
 	showTab.value = [false, false, false]
 	showTab.value[index] = true
 }
-// 两个变量的声明不能写在handleScroll里面,因为写在里面会导致每次滚动都会重新赋初始值
+
 let bgOpacity = 0
 let fontColor = 255
 const handleScroll = (e) => { // 0 - 340
-	console.log(e.detail.scrollTop);
+	// console.log(e.detail.scrollTop);
 	let top = e.detail.scrollTop
 	if (top <= 340) {
 		bgOpacity = (top / 340).toFixed(2)
@@ -201,12 +204,11 @@ const handleScroll = (e) => { // 0 - 340
 	headerFontColor.value = `rgb(${fontColor}, ${fontColor}, ${fontColor})`
 }
 
-const goSongsList = () => {
+const goSongsList = (id) => {
 	uni.navigateTo({
-		url:'/pages/songsList/songsList'
+		url: `/pages/songsList/songsList?id=${id}`
 	})
 }
-
 </script>
 
 <style lang="scss" scoped>
@@ -365,9 +367,6 @@ const goSongsList = () => {
 					.title{
 						color: #3d4251;
 						font-size: 28rpx;
-						// text-overflow: ellipsis;
-						// overflow: hidden;
-						// white-space: nowrap;
 					}
 					.detail{
 						color: #6e747b;
