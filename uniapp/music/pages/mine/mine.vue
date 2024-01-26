@@ -87,8 +87,8 @@
 					</view>
 				</view>
 				<view class="list-sort">
-					<view class="tab">
-						<view class="sort-item" v-for="item in sort_playlist" :key="item.id">
+					<view class="tab" v-show="showTab[0]">
+						<view class="sort-item" @click="goSongsList" v-for="item in sort_playlist" :key="item.id">
 							<view class="pic">
 								<image :src="item.coverImgUrl" mode="aspectFill"></image>
 							</view>
@@ -103,10 +103,10 @@
 							</view>
 						</view>
 					</view>
-					<view class="tab" v-if="false">
+					<view class="tab" v-show="showTab[1]">
 						播客的内容
 					</view>
-					<view class="tab" v-if="false">
+					<view class="tab" v-show="showTab[2]">
 						动态的内容
 					</view>
 				</view>
@@ -130,6 +130,8 @@ const nav_bottom = ref(750 / 3 / 2 + 'rpx')
 const sort_playlist = ref([])
 const headerBgColor = ref('rgba(255, 255, 255, 0)')
 const headerFontColor = ref('rgba(255, 255, 255, 1)')
+const showTab = ref([true, false, false])
+ 
  
 const isLogin = computed(() => {
 	return store.state.loginState;
@@ -175,24 +177,46 @@ watch(
 const changeNav = (index) => { // 0 1 2   1 3 5
 	activeNum.value = index
 	nav_bottom.value = 750 / 3 / 2 * ((2 * index) + 1) + 'rpx'
+	
+	showTab.value = [false, false, false]
+	showTab.value[index] = true
 }
-
+// 两个变量的声明不能写在handleScroll里面,因为写在里面会导致每次滚动都会重新赋初始值
+let bgOpacity = 0
+let fontColor = 255
 const handleScroll = (e) => { // 0 - 340
 	console.log(e.detail.scrollTop);
 	let top = e.detail.scrollTop
-	let bgOpacity = 0
-	let fontOpacity = 1
+	if (top <= 340) {
+		bgOpacity = (top / 340).toFixed(2)
+	} else {
+		bgOpacity = 1
+	}
+	if (top >= 200) {
+		fontColor = 0
+	} else {
+		fontColor = 255
+	}
 	headerBgColor.value = `rgba(255, 255, 255, ${bgOpacity})`
-	headerFontColor.value = `rgba(255, 255, 255, ${fontOpacity})`
+	headerFontColor.value = `rgb(${fontColor}, ${fontColor}, ${fontColor})`
 }
+
+const goSongsList = () => {
+	uni.navigateTo({
+		url:'/pages/songsList/songsList'
+	})
+}
+
 </script>
 
 <style lang="scss" scoped>
 .mine{
-	height: 100vh;
+	height: 100%;
 }
 .mine-bd {
-	padding: 280rpx 30rpx 80rpx;
+	height: 100%;
+	box-sizing: border-box;
+	padding: 280rpx 30rpx 0rpx;
 	position: relative;
 	.bg{
 		background-color: #93969d;
@@ -341,6 +365,9 @@ const handleScroll = (e) => { // 0 - 340
 					.title{
 						color: #3d4251;
 						font-size: 28rpx;
+						// text-overflow: ellipsis;
+						// overflow: hidden;
+						// white-space: nowrap;
 					}
 					.detail{
 						color: #6e747b;
