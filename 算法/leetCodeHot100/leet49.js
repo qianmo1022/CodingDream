@@ -1,8 +1,8 @@
 // var groupAnagrams = function(strs) {
 //     const map = new Map();//key是排序后的字符串，value是排序后的字符串对应的原始字符串数组
 //     for (let str of strs) {
-//         let array = Array.from(str);
-//         array.sort();
+//         let array = Array.from(str);//将字符串转换为数组
+//         array.sort();//排序
 //         let key = array.toString();
 //         let list = map.get(key) ? map.get(key) : new Array();//如果map中没有key对应的value，就新建一个数组
 //         list.push(str);
