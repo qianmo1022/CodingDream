@@ -12,7 +12,7 @@ var findAnagrams = function(s, p) {
         --count[p[i].charCodeAt() - 'a'.charCodeAt()];
     }
 
-    let differ = 0;
+    let differ = 0;//
     for (let j = 0; j < 26; ++j) {
         if (count[j] !== 0) {
             ++differ;
