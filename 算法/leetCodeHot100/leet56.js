@@ -1,5 +1,5 @@
 // var merge = function (intervals) {
-//     intervals.sort((a, b) => a[0] - b[0]);
+//     intervals.sort((a, b) => a[0] - b[0]);//按照区间的左端点排序
 //     let prev = intervals[0]
 //     let result = []
 //     for(let i =0; i<intervals.length; i++){
