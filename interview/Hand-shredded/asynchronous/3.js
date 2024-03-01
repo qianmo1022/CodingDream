@@ -8,25 +8,33 @@ function a() {
 }
 
 function b() {
-  setTimeout(() => {
-    console.log("b");
-  }, 500);
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log("b");
+      resolve("yes"); //resolve的值会传递给then的回调函数，即下文的res
+    }, 500);
+  });
 }
 
 // a().then((res) => {
 //     b();
 // })
-a()
-  .then(
-    (res) => {
-      // res == ok
-      console.log(res, "------");
-      b();
-    },
-    (err) => {
-        console.log(err, "------");
-    }
-  )
-  .catch((err) => {
-    console.log(err, "------");
-  });
+// a()
+//   .then(
+//     (res) => {
+//       // res == ok
+//       console.log(res, "------");
+//       return b();
+//     },
+//     (err) => {
+//         console.log(err, "------");
+//     }
+//   )
+//     .then((res)=>{
+//         console.log(res,"then2");
+//     })
+
+Promise.race([a(), b()]).then((res) => {
+  console.log(res);
+});
+
