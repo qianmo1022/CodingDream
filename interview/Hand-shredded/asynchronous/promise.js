@@ -103,16 +103,84 @@ class MyPromise {
         // resolve('')
     })
   }
+  static all (promises) {
+    return new MyPromise((resolve, reject) => {
+      let count = 0, arr = []
+      for (let i = 0;i < promises.length; i++) {
+        promises[i].then(
+          (value) => {
+            count++
+            arr[i] = value
+            if (count === promises.length) {
+              resolve(arr)
+            }
+          },
+          (reason) => {
+            reject(reason)
+          }
+        )
+      }
+    })
+  }
+  static any (promises) {
+    return new MyPromise((resolve, reject) => {
+      let count = 0, errors = []
+      for (let i = 0;i < promises.length; i++) {
+        promises[i].then(
+          (value) => {
+            resolve(value)
+          },
+          (reason) => {
+            count++
+            errors[i] = reason
+            if (count === promises.length) {
+              reject(new AggregateError(errors))
+            }
+          }
+        )
+      }
+    })
+  }
 }
 
-// MyPromise.prototype.then = function(onFulfilled, onRejected) {}
+// // MyPromise.prototype.then = function(onFulfilled, onRejected) {}
 
-let p = new MyPromise((resolve, reject) => {
-  resolve("1");
-});
-// console.log(p);
-p.then((res) => {
-  console.log("then called");
-}).then((res) => {
-  console.log("then2 called");
-});
+// let p = new MyPromise((resolve, reject) => {
+//   resolve("1");
+// });
+// // console.log(p);
+// p.then((res) => {
+//   console.log("then called");
+// }).then((res) => {
+//   console.log("then2 called");
+// });
+function a() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log("a");
+      resolve("a");
+    }, 1000);
+  });
+}
+function b() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log("b");
+      resolve("b");
+    }, 500);
+  });
+}
+
+function c() {
+  console.log("c");
+}
+
+MyPromise.all([a(), b()]).then(
+  (res) => {
+    console.log(res);
+    c();
+  },
+  (err) => {
+    console.log(err);
+  }
+);
