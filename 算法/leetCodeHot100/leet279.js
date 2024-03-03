@@ -24,6 +24,7 @@
 //     return dp[n]
 // };
 
+// 先遍历背包，再遍历物品
 var numSquares = function(n) {
     let dp = new Array(n + 1).fill(Infinity)
     dp[0] = 0

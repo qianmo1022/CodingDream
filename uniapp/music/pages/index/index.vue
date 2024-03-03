@@ -87,13 +87,13 @@ const getRecommendList = async() => {
 // 推荐歌曲
 const getRecommendSongs = async() => {
 	const res = await apiGetRecommendSongs()
-	// console.log(res.data.data.dailySongs);
+	console.log(res.data.data.dailySongs);
 	state.recommendSongs = res.data.data.dailySongs
 }
 // 雷达歌单
 const getPersonalizedList = async() => {
 	const res = await apiGetPersonalizedList()
-	console.log(res.data.result);
+	// console.log(res.data.result);
 	state.personalizedList = res.data.result
 }
 

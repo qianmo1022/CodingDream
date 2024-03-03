@@ -15,10 +15,16 @@
     一、维护了一个状态，status，值为: pending(默认), fulfilled/resolved(成功), rejected(失败)，
     目的是让Promise的状态一经改变，无法再次修改，也就保证了then和catch不可能同时触发
     二、内部的resolve函数会修改status为fulfilled，并触发then中的回调
-
-3. then:
+    三、then:
     1. 默认返回一个Promise对象，状态为fulfilled
     2. 当then前面的Promise状态为fulfilled时，then中的回调函数直接执行
         当then前面的Promise状态为rejected时，then中的第一个回调函数不执行，执行then中的第二个回调函数或者catch中的回调函数
         当then前面的Promise状态为pending时，then中的回调需要被缓存起来交给resolve或者reject来执行
+3. Generator
+    1. 可以分段执行，可以暂停
+    2. 可以控制每个阶段的返回值
+    3. 可以知道是否执行完毕
+    4. 可以借助 Thunk 和 co 模块 处理异步，但是写法复杂，所以generator函数的意义其实是为了打造 async和await
+
+4. async/await:
 

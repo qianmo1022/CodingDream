@@ -1,5 +1,5 @@
 const Koa = require('koa')
-const cors = require('koa2-cors');
+const cors = require('koa2-cors');// 用来解决跨域问题
 const bodyParser = require('koa-bodyparser')  // 为了让 koa 可以解析出来 post 请求传递的参数
 const app = new Koa()
 const mongoose = require('mongoose')   // 用来连接mongodb

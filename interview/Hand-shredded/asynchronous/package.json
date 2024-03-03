@@ -1,0 +1,15 @@
+{
+  "name": "asynchronous",
+  "version": "1.0.0",
+  "description": "因为JS是单线程编程语言,同一时间只能执行一个任务",
+  "main": "1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "co": "^4.6.0"
+  }
+}
