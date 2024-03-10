@@ -75,3 +75,6 @@ new会创建一个对象，让对象的隐式原型等于显示原型，让this�
             3. 后端接收到这个参数 'callback' 后，将要返回给前端的数据data和 这个参数'callback' 进行拼接，成'callback(data)',并返回
             4. 因为window上已经有一个callback函数，后端又返回了一个形如'callback(data)',浏览器会将该字符串执行成callback的调用
         (2) 缺点：1. 需要后端支持，2. 只能支持GET请求
+    
+    2. CORS(Cross-Origin Resource Sharing) 跨域资源共享
+        
