@@ -68,7 +68,7 @@ new会创建一个对象，让对象的隐式原型等于显示原型，让this�
         
     https://192.168.1.100:8080（后端go）
 
-    1. JSONP --- 借助script标签上的src属性不受同源策略的影响这一机制，来实现跨域
+1. JSONP --- 借助script标签上的src属性不受同源策略的影响这一机制，来实现跨域
         (1) ajax请求受同源策略的影响，但是<script>标签上的src属性不受同源策略的影响，而且该属性也能使浏览器发送一个GET请求，所以可以利用这个特点来绕过同源策略
             1. 借助script的src属性给后端发送一个请求，且携带一个参数('callback')
             2. 前端在window对象上添加了一个 callback 函数
@@ -76,5 +76,12 @@ new会创建一个对象，让对象的隐式原型等于显示原型，让this�
             4. 因为window上已经有一个callback函数，后端又返回了一个形如'callback(data)',浏览器会将该字符串执行成callback的调用
         (2) 缺点：1. 需要后端支持，2. 只能支持GET请求
     
-    2. CORS(Cross-Origin Resource Sharing) 跨域资源共享
-        
+2. CORS(Cross-Origin Resource Sharing) 跨域资源共享 --- 后端通过设置响应头来告诉浏览器不要拒绝后端的响应
+
+3. node代理 （vite 只在开发环境下生效）
+
+4. nginx代理 （类似CORS，配置白名单）（生产环境下常用）
+
+5. domain （在iframe中，当父级页面和子级页面的 子域 不同时，通过设置document.domain = 'xxx' 来将xxx定位基础域，从而实现跨域）
+
+6. postMessage (在iframe中，通过postMessage来实现跨域)

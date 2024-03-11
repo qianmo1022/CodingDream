@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>a.html</h2>
+
+    <iframe src="http://127.0.0.1:5500/postMessage/b.html" frameborder="0" id="iframe"></iframe>
+
+    <script>
+        // 给b发数据
+        let iframe = document.getElementById('iframe');
+        iframe.onload = function() {
+            let data = {
+                name: 'Tom'
+            }
+            iframe.contentWindow.postMessage(JSON.stringify(data), 'http://127.0.0.1:5500');
+        }
+
+        // 监听b传过来的数据
+        window.addEventListener('message', function(e) {
+            console.log(e.data);
+        })
+    </script>
+</body>
+</html>
