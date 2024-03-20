@@ -25,9 +25,9 @@
         // 判断图片有没有进入可视区域，有的话就将其data-original的值赋给src
         // offsetHeight: 元素自身的高度，包含padding,clientHeight: 元素自身的高度，不包含padding
         // innerHeight: 浏览器窗口的高度(只有window对象有这个属性)
+
         let viewHeight = window.innerHeight
         // console.log(viewHeight);
-
         function lazyLoad(){
             let imgs = document.querySelectorAll('img[data-original]')
             Array.from(imgs).forEach(el => {
