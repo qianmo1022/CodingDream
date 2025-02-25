@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">Age++</button>
+
+    <script>
+      let obj = {
+        name: "Kimi",
+        age: 15,
+        like: "coding",
+      };
+      function viewUpdate() {
+        console.log("view update");
+      }
+
+      function girlFriend() {
+        console.log("ok,I'm coming !!!");
+      }
+
+      let proxyObj = new Proxy(obj, {
+        get: function (target, key, receiver) {
+          // 拦截访问（代理对象被访问时触发）
+          // console.log('target:', target); // 被代理的对象
+          // console.log('key:', key); // 访问的属性
+          // console.log('receiver:', receiver); // 代理后的对象
+
+        //   return target[key];
+        return Reflect.get(target, key, receiver);
+        },
+        set: function (target, key, value, receiver) {
+          if (value !== target[key]) {
+            // target[key] = value;
+            Reflect.set(target, key, value, receiver);
+            viewUpdate();
+          }
+          if (value >= 18) {
+            girlFriend();
+          }
+        },
+      });
+
+      document.getElementById("btn").onclick = function () {
+        proxyObj.age++;
+        // if (obj.age >= 18) {
+        //     girlFriend();
+        // }
+
+        // console.log(obj.age);
+        console.log(proxyObj.age);
+      };
+
+      //   document.getElementById("btn").addEventListener("click", function () {
+      //     obj.age++;
+      //     console.log(obj.age);
+      //   });
+    </script>
+  </body>
+</html>
